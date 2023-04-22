@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="style/output.css" rel="stylesheet">
+<link href="style/style.css" rel="stylesheet">
+</head>
+
+<script>
+    window.addEventListener('DOMContentLoaded',()=>{
+        const menuBtn= document.querySelector('#menu-btn')
+        const dropdown =document.querySelector('#dropdown')
+        menuBtn.addEventListener('click',()=>{
+            dropdown.classList.toggle('hidden')
+            dropdown.classList.toggle('flex')
+        })
+    })
+</script>
+<script src="script.js"></script>
+<body>
+    <div class="grid grid-rows-2 grid-flow-col gap-2">
+        <div class="font-semibold bg-nav tracking-tight" id="nav"><span id="nav-text">TrainLab Compiler</span></div>
+        <div id="below_nav">
+            <!---below nav bar-->
+            <div id="buttons" class="flex">
+                <button id="run-btn" onclick="web_run()">Run</button>
+                <span class="dropdown">
+                    <button class="dropbtn flex"><span id="Menu_drop">HTML</span>
+                        <img src="img/icons8-html-5-250.png" alt="python" id="drop_icon">
+                    </button>
+                    <div class="dropdown-content ">
+                        <div class="flex"><a href="Python.html" style="font-weight: 500;"class="flex">Python
+                        <img src="img/icons8-python-128.png" alt="python" id="python_icon" ></a>
+                    </div>
+                        <div class="flex"><a href="Java.html"style="font-weight: 500;"class="flex">Java
+                        <img src="img/icons8-java-250.png" alt="python" id="python_icon"></a>
+                    </div>
+                    </div>
+                </span>
+            </div>            
+        </div>
+    </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3" id="code">
+        <div id="Html_code"><span id="HTML">HTML</span>
+            <div>
+                <textarea id="html_input" class="w-fit h-72 placeholder-ph "  placeholder="HTML Code" onkeyup="web_run()" required ></textarea>
+            </div>            
+            <div id="add_code" class="flex justify-between">
+                <div id="css">
+                    <span style="color: #86868B; padding-left: 2%; font-weight: 600;">CSS</span>
+                    <div>
+                        <textarea id="css_input" class="w-fit placeholder-ph" placeholder="CSS code" onkeyup="web_run()" required></textarea>
+                    </div> 
+                    
+                </div>
+                <div id="js">
+                    <span style="color: #86868B; padding-left: 2%; font-weight: 600;">JSS</span>
+                    <div>
+                        <textarea id="js_input" class="w-fit placeholder-ph" placeholder="JS code" onkeyup="web_run()" required></textarea>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <div id="Code_Output">
+            <span style="color: #86868B;font-weight: 600;padding-left: 2%;">OUTPUT</span>
+            <div>
+                <iframe id="Output"></iframe>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>

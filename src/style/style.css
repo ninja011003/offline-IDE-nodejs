@@ -1,0 +1,188 @@
+html{
+    background-color: #1D1D1F;
+    overflow: hidden;
+}
+
+#nav{
+    color: white;
+    font-size: 32px;
+    block-size: 56px;
+    
+}
+#nav-text{
+    margin-left: 3%;
+}
+#below_nav{
+    overflow: hidden;
+
+}
+#run-btn{
+
+    background-color: #FEC749;
+    border-radius: 50px;
+    height: 50px;
+    width: 147px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0.5%;
+    margin-left: 5%;
+}
+
+
+#run-btn:hover{
+    background-color: #FFD574   ;
+}
+.dropdown{
+    margin-top: 0.5%;
+    margin-left: 15%;
+}
+.dropbtn {
+    background-color: #FEC749;
+    border-radius: 50px;
+    height: 50px;
+    width: 147px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0.5%;
+    margin-left: 5%;
+  }
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #FEC749;
+    min-width: 100px;
+    z-index: 1;
+    margin-left: 2.1%;
+
+  }
+  
+  /* Style for each content div */
+  .dropdown-content div {
+    padding: 10px 5px;
+  }
+  
+  /* Highlight dropdown options on hover */
+  .dropdown-content div:hover {
+    background-color: #FFD574;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Highlight dropdown button when dropdown menu is open */
+  .dropdown:hover .dropbtn {
+    background-color: #FFD574 ;
+  }
+
+  
+
+#code{
+    margin-top: 1%;
+    z-index: -1  ;
+}
+
+#Html_code{
+    background-color: #474748;
+    margin-left: 3%;
+    height: 40vh;
+    color: white;
+}
+#HTML{
+    color: #86868B;
+    font-weight: 600;
+    padding-left: 2%;
+    padding-top: 15%;
+}
+#html_input{
+    color: white;
+    background-color: #474748;
+    margin-left: 2%;
+    width: 46.5vw;
+    height: 16.5vw;
+    border-style :none ;
+    resize: none;
+    
+}
+
+#Code_Output{
+    background-color: #EBEBEB;
+    height: 80vh;
+    margin-right: 3%;
+}
+
+#add_code{
+    margin-top: 0.6%;
+    
+}
+
+#css{
+    background-color: #474748;
+    height: 38.7vh;
+    width: 23.8vw;
+    margin-top: 1%;
+
+
+}
+
+#css_input{
+    color: white;
+    background-color: #474748;
+    margin-left: 3%;
+    width: 22.5vw;
+    height: 34vh;
+    border-style :none ;
+    
+    
+}
+
+#js{
+    background-color: #474748;
+    height: 38.7vh;
+    width: 23.8vw;
+    margin-top: 1%;
+
+}
+
+#js_input{
+    color: white;
+    background-color: #474748;
+    margin-left: 3%;
+    width: 22.5vw;
+    height: 34vh;
+    border-style :none ;
+    
+    
+}
+
+#Output{
+    background-color: #EBEBEB;
+    margin-left: 2%;
+    color: #1D1D1F;
+    height: 75vh;
+    width: 46vw;
+}
+
+
+#python_icon{
+    height: 25px;
+    margin-left: 8%;
+
+}
+
+#Menu_drop{
+    margin-left: 26%;
+    margin-top: 6%;
+}
+
+#drop_icon{
+    margin-top: 9%;
+    margin-left: 4%;
+    height: 23px;
+}
+
+#textarea{
+    resize:none
+}
