@@ -94,12 +94,12 @@ html{
     padding-top: 15%;
 }
 #java_input{
-    color: white;
+    color: rgb(255, 255, 255);
     background-color: #474748;
-    margin-left: 2%;
+    margin-left: 3%;
     height: 75vh;
     width: 45vw;
-    border-style :none ;
+    border-style :none;
     resize: none;
     
 }
