@@ -6,7 +6,22 @@
 <link href="style/output.css" rel="stylesheet">
 <link href="style/style.css" rel="stylesheet">
 </head>
-
+<script>
+    window.addEventListener('beforeunload', function() {
+      // Send a request to the server to gracefully shutdown
+      fetch('/shutdown')
+        .then(response => {
+          if (response.ok) {
+            console.log('Server shutdown successful');
+          } else {
+            console.error('Server shutdown failed');
+          }
+        })
+        .catch(error => {
+          console.error('Error during server shutdown:', error);
+        });
+    });
+  </script>
 <script>
     window.addEventListener('DOMContentLoaded',()=>{
         const menuBtn= document.querySelector('#menu-btn')

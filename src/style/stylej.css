@@ -45,7 +45,7 @@ html{
     font-weight: 600;
     margin-top: 0.5%;
     margin-left: 5%;
-  }
+}
 
 .dropdown-content {
     display: none; /* Hidden by default */
@@ -54,9 +54,8 @@ html{
     min-width: 100px;
     z-index: 1;
     margin-left: 2.1%;
+}
 
-  }
-  
   /* Style for each content div */
   .dropdown-content div {
     padding: 10px 5px;

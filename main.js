@@ -1,17 +1,38 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
-const { exec } = require('child_process');
+const child_process = require('child_process');
+const http = require('http');
 
-const app = express()
-app.use(express.static('./src'))
-app.use(express.static(__dirname))
+const server = express()
+const app = http.createServer(server);
+const port  = 6969;
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'./src/HTML_page.html'))
+async function openBrowser(port) {
+    const url = `http://localhost:${port}`;
+    const open = await import('open');
+    open.default(url);
+}
+
+server.use(express.static(path.join(__dirname, 'src')));
+function shutdown() {
+    app.close(() => {
+      console.log('Server terminated');
+      process.exit(0);
+    });
+  }
+
+
+//API
+server.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname,'src','HTML_page.html'));
 })
 
-app.post("/runningJava", (req, res) => {
+server.get('/shutdown', (req, res) => {
+    shutdown();
+});
+
+server.post("/runningJava", (req, res) => {
     let inputText = "";
     req.on("data", (chunk) => {
         inputText += chunk;
@@ -26,40 +47,61 @@ app.post("/runningJava", (req, res) => {
             }
         });
     });
-    const cmdCommand = 'java sample.java';
+    const cmdCommand = 'java sample.java ';
     // Run the CMD command
-    exec(cmdCommand, (error, stdout, stderr) => {
-        const file = "src/output.txt";
+    child_process.exec(cmdCommand, (error, stdout, stderr) => {
+        //const file = "src/output.txt";
         if (error) {
-            fs.writeFile(file,`${error.message}`,(err)=>{
-                if(err){
-                    alert("error running the java code plz retry");
-                }
-            })
-            res.send(error.message);
+            
+            res.send("<pre><h3>"+error.message+"</h3></pre>");
         }
         else if (stdout) {
             
-            fs.writeFile(file,`${stdout}`,(err)=>{
-                if(err){
-                    alert("error running the java code plz retry");
-                }
-            })
-            res.send(stdout);
+            res.send("<pre><h3>"+stdout+"</h3></pre>");
         }
         else if (stderr) {
-            fs.writeFile(file,`${stderr}`,(err)=>{
-                if(err){
-                    alert("error running the java code plz retry");
-                }
-            })
-            res.send(stderr);
+            res.send("<pre><h3>"+stderr+"</h3></pre>");
         }
     }
     );
 });
 
-app.listen(5050,()=>{
-    console.log('server running');
+server.post("/runningPython", (req, res) => {
+    let inputText = "";
+    req.on("data", (chunk) => {
+        inputText += chunk;
+    });
+    req.on("end", () => {
+        const fileName = "sample.py";
+        // Write the input text to the Java file
+        fs.writeFile(fileName, inputText, (err) => {
+            if (err) {
+                //console.error(err);
+                res.status(500).send("Failed to create Python file.");
+            }
+        });
+    });
+    const cmdCommand = 'python sample.py ';
+    // Run the CMD command
+    child_process.exec(cmdCommand, (error, stdout, stderr) => {
+        //const file = "src/output.txt";
+        if (error) {
+            res.send("<pre><h3>"+error.message+"</h3></pre>");
+        }
+        else if (stdout) {
+            res.send("<pre><h3>"+stdout+"</h3></pre>");
+        }
+        else if (stderr) {
+            res.send("<pre><h3>"+stderr+"</h3></pre>");
+        }
+    }
+    );
+});
+
+app.listen(port,()=>{
+    console.log(`server running on port 6969`);
+    openBrowser(port);
 })
+
+
 
