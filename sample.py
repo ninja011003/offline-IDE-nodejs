@@ -1,2 +1,1 @@
-#type your code here
-hello
+print("T")
