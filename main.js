@@ -53,7 +53,7 @@ server.post('/runHTML', (req, res) => {
   });
   
 server.post("/runJava", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     var inputText = req.body.java;
     const fileName = "sample.java";
         // Write the input text to the Java file
@@ -83,7 +83,7 @@ server.post("/runJava", (req, res) => {
 });
 
 server.post("/runPython", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     var inputText = req.body.python;
     const fileName = "sample.py";
         // Write the input text to the Java file
