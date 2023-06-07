@@ -7,22 +7,7 @@
 <link href="style/style.css" rel="stylesheet">
 </head>
 <script>
-    window.addEventListener('beforeunload', function() {
-      // Send a request to the server to gracefully shutdown
-      fetch('/shutdown')
-        .then(response => {
-          if (response.ok) {
-            console.log('Server shutdown successful');
-          } else {
-            console.error('Server shutdown failed');
-          }
-        })
-        .catch(error => {
-          console.error('Error during server shutdown:', error);
-        });
-    });
-  </script>
-<script>
+
     window.addEventListener('DOMContentLoaded',()=>{
         const menuBtn= document.querySelector('#menu-btn')
         const dropdown =document.querySelector('#dropdown')
@@ -32,14 +17,13 @@
         })
     })
 </script>
-<script src="script.js"></script>
 <body>
     <div class="grid grid-rows-2 grid-flow-col gap-2">
         <div class="font-semibold bg-nav tracking-tight" id="nav"><span id="nav-text">TrainLab Compiler</span></div>
         <div id="below_nav">
             <!---below nav bar-->
             <div id="buttons" class="flex">
-                <button id="run-btn" onclick="web_run()">Run</button>
+                <button id="run-btn">Run</button>
                 <span class="dropdown">
                     <button class="dropbtn flex"><span id="Menu_drop">HTML</span>
                         <img src="img/icons8-html-5-250.png" alt="python" id="drop_icon">
@@ -53,37 +37,51 @@
                     </div>
                     </div>
                 </span>
+                <form action="/shutdown" method="post">
+                    <button id="shut-btn" type="submit">Shut Down</button>
+                </form>
             </div>            
         </div>
     </div>
     </div>
     <div class="grid grid-cols-2 gap-3" id="code">
+        <form id="myForm" name="myForm" action="/runHTML" method="post" target="Output">
         <div id="Html_code"><span id="HTML">HTML</span>
+            
             <div>
-                <textarea id="html_input" class="w-fit h-72 placeholder-ph "  placeholder="HTML Code" onkeyup="web_run()" required ></textarea>
+                <textarea id="html_input" name="html" class="w-fit h-72 placeholder-ph "  placeholder="HTML Code"  required ></textarea>
             </div>            
             <div id="add_code" class="flex justify-between">
                 <div id="css">
                     <span style="color: #86868B; padding-left: 2%; font-weight: 600;">CSS</span>
                     <div>
-                        <textarea id="css_input" class="w-fit placeholder-ph" placeholder="CSS code" onkeyup="web_run()" required></textarea>
+                        <textarea id="css_input" name="css" class="w-fit placeholder-ph" placeholder="CSS code"  required></textarea>
                     </div> 
                     
                 </div>
                 <div id="js">
-                    <span style="color: #86868B; padding-left: 2%; font-weight: 600;">JSS</span>
+                    <span style="color: #86868B; padding-left: 2%; font-weight: 600;">JS</span>
                     <div>
-                        <textarea id="js_input" class="w-fit placeholder-ph" placeholder="JS code" onkeyup="web_run()" required></textarea>
+                        <textarea id="js_input"  name="js" class="w-fit placeholder-ph" placeholder="JS code"  required></textarea>
                     </div>  
                 </div>
             </div>
+        
         </div>
+        </form>
         <div id="Code_Output">
             <span style="color: #86868B;font-weight: 600;padding-left: 2%;">OUTPUT</span>
             <div>
-                <iframe id="Output"></iframe>
+                <iframe id="Output" name="Output"></iframe>
             </div>
         </div>        
     </div>
+    <script>
+        document.getElementById('run-btn').addEventListener('click', function() {
+        console.log('button is clicked');
+        document.getElementById('myForm').submit();
+        console.log('submitted')
+    });
+    </script>
 </body>
 </html>

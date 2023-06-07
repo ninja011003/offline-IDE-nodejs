@@ -1,0 +1,15 @@
++hello
+window.addEventListener('beforeunload', function() {
+      // Send a request to the server to gracefully shutdown
+      fetch('/shutdown')
+        .then(response => {
+          if (response.ok) {
+            console.log('Server shutdown successful');
+          } else {
+            console.error('Server shutdown failed');
+          }
+        })
+        .catch(error => {
+          console.error('Error during server shutdown:', error);
+        });
+    });

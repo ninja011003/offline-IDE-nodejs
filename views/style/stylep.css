@@ -24,8 +24,20 @@ html{
     margin-top: 0.5%;
     margin-left: 5%;
 }
-
-
+#shut-btn{
+    
+    background-color: #FEC749;
+    border-radius: 50px;
+    height: 50px;
+    width: 147px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 4.6%;
+    margin-left: 500%;
+}
+#shut-btn:hover{
+    background-color: #FFD574   ;
+}
 #run-btn:hover{
     background-color: #FFD574   ;
 }

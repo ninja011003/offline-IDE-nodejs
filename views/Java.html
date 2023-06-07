@@ -5,22 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="style/output.css" rel="stylesheet">
   <link href="style/stylej.css" rel="stylesheet">
-  <script src="script.js"></script>
-  <script>
-    window.addEventListener('beforeunload', function() {
-      // Send a request to the server to gracefully shutdown
-      fetch('/shutdown')
-        .then(response => {
-          if (response.ok) {
-            console.log('Server shutdown successful');
-          } else {
-            console.error('Server shutdown failed');
-          }
-        })
-        .catch(error => {
-          console.error('Error during server shutdown:', error);
-        });
-    });
+  <script >
+ 
   </script>
 </head>
 <body>
@@ -30,7 +16,7 @@
         <div>
             <!---below nav bar-->
             <div id="buttons" class="flex">
-                <button id="run-btn" onclick="java_run()">Run</button>
+                <button id="run-btn" >Run</button>
                 <span class="dropdown">
                     <button class="dropbtn flex"><span id="Menu_drop">Java</span>
                         <img src="img/icons8-java-250.png" alt="python" id="python1_icon">
@@ -44,7 +30,10 @@
                         <img src="img/icons8-python-128.png" alt="python" id="python_icon"></a>
                     </div>
                     </div>
-                  </span>               
+                  </span>   
+                  <form action="/shutdown" method="post">
+                    <button id="shut-btn" >Shut Down</button>
+                </form>           
             </div>
 
         </div>
@@ -52,30 +41,30 @@
 
     </div>
     <div class="grid grid-cols-2 gap-3" id="code">
+      <form id="myForm" name="myForm" action="/runJava" method="post" target="Output">
         <div id="Java_code"><span id="JAVA">JAVA</span>
             <div>
-                <textarea id="java_input" class="w-fit h-72 placeholder-ph "  placeholder="JAVA Code"  required>class sample{
+                <textarea id="java_input" name="java" class="w-fit h-72 placeholder-ph "  placeholder="JAVA Code"  required>class sample{
 //type here
 }
                 </textarea>
             </div>            
-           
-                
-
         </div>
+      </form>
         <div id="Code_Output">
             <span style="color: #86868B;font-weight: 600;padding-left: 2%;">OUTPUT</span>
             <div>
-                <iframe id="Output"></iframe>
+                <iframe id="Output"  name="Output"></iframe>
 
             </div>
 
         </div>        
     </div>
-
-
-
-
-  
+    <script>
+      document.getElementById('run-btn').addEventListener('click', function() {
+      //console.log('button is clicked');
+      document.getElementById('myForm').submit();
+  });
+  </script>
 </body>
 </html>
